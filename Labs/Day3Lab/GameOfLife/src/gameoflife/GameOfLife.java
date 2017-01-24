@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package day1lab;
+package gameoflife;
 
 /**
  *
- * @author jbaptist
+ * @author alan
  */
-public class Day1Lab {
+public class GameOfLife {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
-        new Day1LabFrame();
-        // TODO code application logic here
     }
     
 }

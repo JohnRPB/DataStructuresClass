@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package day1lab;
+package Tournament;
 
 import java.util.ArrayList;
 
@@ -11,13 +11,13 @@ import java.util.ArrayList;
  *
  * @author jbaptist
  */
-public class Day1LabFrame extends javax.swing.JFrame {
+public class TournamentFrame extends javax.swing.JFrame {
 
     private final int BAD_INPUT = -1;
     /**
-     * Creates new form Day1LabFrame
+     * Creates new form TournamentFrame
      */
-    public Day1LabFrame() {
+    public TournamentFrame() {
         initComponents();
         setVisible(true);
         setTitle("Tournament");
@@ -82,7 +82,7 @@ public class Day1LabFrame extends javax.swing.JFrame {
             doStuff(n);
         } else {
             
-            tournamentField.setText("not a power of 2");
+            tournamentField.setText("not a power of 2, dumbass");
             
         }
         prepareForInput();
@@ -124,8 +124,11 @@ public class Day1LabFrame extends javax.swing.JFrame {
     }
 
     private void display(Integer[] list) {
-        for (int next: list) {
-            tournamentField.append("" + next + "\n");
+        for (int i = 0; i < list.length; i = i+2) {
+            
+            tournamentField.append("" + list[i] + "\n");
+            tournamentField.append("" + list[i+1] + "\n");
+            tournamentField.append("" + "\n");
                     
             
         }
@@ -138,18 +141,29 @@ public class Day1LabFrame extends javax.swing.JFrame {
 
     private static boolean powerOfTwo(int n) {
         int dum = n ;
-        while(dum % 2 == 0 && dum > 2) {
+        
+        if (dum == 2) {
+        
+            return true;
+        
+        } else {
             
-            dum = dum/2 ;
+                     
+            while(dum % 2 == 0 && dum > 2) {
             
-            if(dum == 2) {
+                dum = dum/2 ;
+            
+                if(dum == 2) {
                 
-                return true ;
+                    return true ;
                 
+                }
+            
             }
+            return false ;
             
         }
-        return false ;
+        
     }
 
     public static void main(String[] args) {
@@ -161,23 +175,21 @@ public class Day1LabFrame extends javax.swing.JFrame {
     }
 
     private ArrayList twoTimes(ArrayList list) {
-        
- 
+       
         int N = list.size() * 2 + 1 ;
-        ArrayList<Integer> newlist = new ArrayList<Integer>();
+        ArrayList<Integer> newlist = new ArrayList();
         for(int i = 0; i <= list.size()-1; i++) {
             
+            int x = Integer.parseInt("" + list.get(i));   
+            
             if((i+1) % 2 == 0) {
-                
-               
-               int x = Integer.parseInt("" + list.get(i));   
+
                newlist.add(N-x);
                newlist.add(x);
                
                 
             } else {
-                
-               int x = Integer.parseInt("" + list.get(i));  
+
                newlist.add(x);
                newlist.add(N-x);
                 
