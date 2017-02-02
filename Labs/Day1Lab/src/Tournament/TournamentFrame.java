@@ -201,5 +201,3 @@ public class TournamentFrame extends javax.swing.JFrame {
     }
         
 }
-
-
