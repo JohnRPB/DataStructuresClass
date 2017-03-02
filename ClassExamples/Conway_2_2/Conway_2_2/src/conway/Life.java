@@ -1,5 +1,6 @@
 package conway;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -96,6 +97,22 @@ class Life {
             return 0;
         }
         return n;
+    }
+    
+    int left = 40;
+    int up = 100;
+    int w = 50;
+    
+    void paint(Graphics g) {
+        for(int row = 0; row < N; row++) {
+            for(int col = 0; col < N; col++) {
+                if(cells[row][col].isAlive()) {
+                    g.setColor(Color.red);
+                } else g.setColor(Color.BLACK);
+                g.fillRect(left+w*col, up+w*row, w, w);
+            } //inner
+        }
+        w++;
     }
 
 }

@@ -9,7 +9,7 @@ public class Conway {
     static Cell[][] grid = new Cell[5][5];
 
     public static void main(String[] args) {
-        //new LifeFrame();
+        new LifeFrame();
         //new LifeFrameAnimated();
         init();
         String input = "hi...";

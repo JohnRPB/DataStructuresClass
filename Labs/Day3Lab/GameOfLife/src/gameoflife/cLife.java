@@ -56,7 +56,7 @@ public class cLife {
     }
      
     public void establishState() {
-        
+
         for(int col = 0; col < n; col++) {
             for(int row = 0; row < n; row++) {
         

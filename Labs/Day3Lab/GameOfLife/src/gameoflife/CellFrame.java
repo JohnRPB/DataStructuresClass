@@ -16,11 +16,15 @@ public class CellFrame extends javax.swing.JFrame {
      */
     public CellFrame() {
         initComponents();
+        LifePanel mp = new LifePanel(this);
+        add(mp);
+        setTitle("Conway!");
+        setSize(800,800);
+        myLife = new Life();
         setVisible(true);
-        setTitle("Conway's Life");
     }
 
-    int buttonNum;
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +37,6 @@ public class CellFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         ConwayField = new javax.swing.JTextArea();
-        Next = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Conway's Life");
@@ -48,13 +51,6 @@ public class CellFrame extends javax.swing.JFrame {
         ConwayField.setRows(5);
         jScrollPane1.setViewportView(ConwayField);
 
-        Next.setText("Next");
-        Next.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NextActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,45 +58,21 @@ public class CellFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(Next)
-                .addGap(19, 19, 19))
+                .addGap(119, 119, 119))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(Next)))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    cLife myCells;
     
-    private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-        
-        if(buttonNum == 0) {
-             myCells = new cLife(10);
-             ConwayField.setText("");
-        } else {
-            myCells.establishState();
-            myCells.generalUpdate();
-        }
-        
-        String input = myCells.toString();
-        ConwayField.setText(input);
-        
-        buttonNum = buttonNum + 1;
-        
-    }//GEN-LAST:event_NextActionPerformed
-
+    
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
@@ -142,7 +114,6 @@ public class CellFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea ConwayField;
-    private javax.swing.JButton Next;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
