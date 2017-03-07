@@ -22,16 +22,23 @@ public class InfixEvaluator {
     
     public static String evaluate(String input) {
         Stack<String> stack = new Stack();
-        StringTokenizer st = new StringTokenizer(input, "+-*/ ", true);
+        StringTokenizer st = new StringTokenizer(input, "+-*/() ", true);
         String nextToken; 
         InfixEvaluator infix = new InfixEvaluator();
         
         while(st.hasMoreTokens()) {
             nextToken = st.nextToken();
-            if (!"+".equals(nextToken) && !"-".equals(nextToken) && !"*".equals(nextToken) && !"/".equals(nextToken) && !" ".equals(nextToken)) {
+            if (!"+".equals(nextToken) && !"-".equals(nextToken) && !"*".equals(nextToken) && !"/".equals(nextToken) && !" ".equals(nextToken) && !")".equals(nextToken) && !"(".equals(nextToken) ) {
                 infix.emit(nextToken);
             } else if (" ".equals(nextToken)){
                
+            } else if (")".equals(nextToken)) {
+                while( !stack.isEmpty() && !(infix.precedence(stack.top()) == 0) ) {
+                        infix.emit(stack.pop());
+                }
+                stack.pop();
+            } else if ("(".equals(nextToken)) {
+                stack.push(nextToken);
             } else {
                 while(!stack.isEmpty() && (infix.precedence(stack.top()) >=  infix.precedence(nextToken))) {
                     infix.emit(stack.pop());
@@ -58,8 +65,12 @@ public class InfixEvaluator {
     public int precedence(String s) {
         if ("+".equals(s) || "-".equals(s)) {
             return 1;
-        } else {
+        } else if ("*".equals(s) || "/".equals(s)) {
             return 2;
+        } else if ("(".equals(s)) {
+            return 0;
+        } else {
+            return 3;
         }
     }
     
